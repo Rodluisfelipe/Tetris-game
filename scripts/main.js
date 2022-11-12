@@ -13,7 +13,7 @@ document.getElementById("start_game").addEventListener("click", function () {
     document.getElementById('demo-img').style.display = "none";
     document.getElementById('restart_game').style.display = "block";
 
-});
+
 document.getElementById("restart_game").addEventListener("click", function () {
     player.pos.y = 0;
     merge(arena, player);
@@ -229,3 +229,107 @@ const context = canvas.getContext('2d');
         }
         dropCounter = 0;
     }
+    let dropCounter = 0;
+    let dropInterval = 500;
+
+   document.getElementById("pause_game").addEventListener("click", function () {
+        dropInterval = 2000000;
+        document.getElementById('pause_game').style.display = "none";
+        document.getElementById('continue_game').style.display = "block";
+    });
+document.getElementById("continue_game").addEventListener("click", function () {
+        dropInterval = 200;
+        document.getElementById('pause_game').style.display = "block";
+        document.getElementById('continue_game').style.display = "none";
+    });
+
+    let lastTime = 0;
+
+    function update(time = 0) {
+        const deltaTime = time - lastTime;
+        lastTime = time;
+         dropCounter += deltaTime;
+
+        if (dropCounter > dropInterval) {
+          
+            playerDrop();
+        };
+
+        draw();
+        requestAnimationFrame(update);
+    };
+
+    let colors = [
+    null,
+    '#FF0D72',
+    '#0DC2FF',
+    '#0DFF72',
+    '#F538FF',
+    '#FF8E0D',
+    '#FFE138',
+    '#3877FF',
+];
+
+    function updateScore() {
+        document.getElementById('score').innerText = player.score;
+ const scoring = document.getElementById('score');
+        const textScore = scoring.textContent;
+        const numberScore = Number(textScore);
+       if (numberScore >= 100) {
+            dropInterval = 400;
+            document.getElementById('levels').innerText = "Level 2";
+        }
+        if (numberScore >= 200) {
+            dropInterval = 300;
+            document.getElementById('levels').innerText = "Level 3";
+        }
+       if (numberScore >= 300) {
+            dropInterval = 200;
+            document.getElementById('levels').innerText = "Level 4";
+        }
+        if (numberScore >= 400) {
+            dropInterval = 100;
+            document.getElementById('levels').innerText = "Level 5";
+        }
+
+    }
+
+    document.addEventListener('keydown', event => {
+        if (event.keyCode === 37) {
+            playerMove(-1);
+            // player.pos.x--;
+        } else if (event.keyCode === 39) {
+            playerMove(1);
+            // player.pos.x++;
+        } else if (event.keyCode === 40) {
+            playerDrop();
+        }
+        else if (event.keyCode === 17) {
+            playerRotate(-1);
+        }
+        else if (event.keyCode === 87) {
+            playerRotate(1);
+        }
+    });
+
+   document.getElementById("arrow-left").addEventListener("click", function () {
+        playerMove(-1);
+    });
+
+    document.getElementById("arrow-right").addEventListener("click", function () {
+        playerMove(1);
+    });
+
+   document.getElementById("rotate_piece").addEventListener("click", function () {
+        playerRotate(1);
+    });
+
+   document.getElementById("arrow-down").addEventListener("click", function () {
+        playerDrop();
+       });
+
+    playerReset();
+    updateScore();
+    update();
+
+});
