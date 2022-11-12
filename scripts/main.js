@@ -61,3 +61,22 @@ const context = canvas.getContext('2d');
         }
         return false;
     };
+
+    function createMatrix(w, h) {
+        const matrix = [];
+        while (h--) {
+            matrix.push(new Array(w).fill(0));
+        }
+        return matrix;
+    };
+
+    function draw() {
+        context.fillStyle = '#e3e3e3';
+        context.fillRect(0, 0, canvas.width, canvas.height);
+
+        drawMatrix(arena, {
+            x: 0,
+            y: 0
+        });
+        drawMatrix(player.matrix, player.pos);
+    }
