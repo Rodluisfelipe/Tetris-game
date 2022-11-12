@@ -16,5 +16,30 @@
         <img src="img/logoTetris.png" alt="Logo con texto Tetris" class="logo-img">
     </a>
     <img src="img/home.jpg" alt="" class="demo img">
+    <div class="navbar">
+        <button id="start_game"><i class="far fa-play-circle"></i></button>
+
+        <button id="restart_game"><i class="far fa-play-circle"></i></button>
+
+        <audio id="myAudio" src="tetrisSong.mp3" preload="auto" loop autoplay>
+        </audio>
+        <button id="music_game" onClick="togglePlay()"><i class="fas fa-music"></i></button>
+
+        <button id="pause_game"><i class="far fa-pause-circle"></i></button>
+
+        <button id="continue_game"><i class='fas fa-redo'></i></button>
+
+        <div class="dropdown">
+            <button id="gamepad_controls" class="dropdown"><i class="fas fa-gamepad"></i></button>
+            <div class="dropdown-content">
+                <p style="margin-top:px;"><i class="fas fa-caret-right"></i>&nbsp;&nbsp;Move Right</p>
+                <p><i class="fas fa-caret-left"></i>&nbsp;&nbsp;Move Left</p>
+                <p><i class="fas fa-caret-down"></i>&nbsp;&nbsp;Move Down</p>
+                <p> <span style="font-weight:bold;">&nbsp;Ctrl</span> = Rotate</p>      
+            </div>
+        </div>
+        
+    
+    </div>
 </body>
 </html>
