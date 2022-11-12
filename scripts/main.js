@@ -151,3 +151,30 @@ const context = canvas.getContext('2d');
         matrix: null,
         score: 0,
     };
+
+    function merge(arena, player) {
+        player.matrix.forEach((row, y) => {
+            // On récupère les positions
+            row.forEach((value, x) => {
+                if (value !== 0) {
+                    arena[y + player.pos.y][x + player.pos.x] = value;
+                }
+            });
+        });
+    };
+
+    function playerRotate(dir) {
+        const pos = player.pos.x;
+        let offset = 1;
+        rotate(player.matrix, dir);
+
+       while (collide(arena, player)) {
+            player.pos.x += offset;
+            offset = -(offset + (offset > 0 ? 1 : -1));
+            if (offset > player.matrix[0].length) {
+                rotate(player.matrix, -dir);
+                player.pos.x = pos;
+                return;
+            }
+        }
+    }
