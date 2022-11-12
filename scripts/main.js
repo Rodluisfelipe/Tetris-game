@@ -197,3 +197,9 @@ const context = canvas.getContext('2d');
             }
         }
     }
+    function playerMove(dir) {
+        player.pos.x += dir;
+        if (collide(arena, player)) {
+            player.pos.x -= dir;
+        }
+    };
