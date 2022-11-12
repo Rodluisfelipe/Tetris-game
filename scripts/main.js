@@ -126,3 +126,28 @@ const context = canvas.getContext('2d');
         ];
         }
     };
+
+
+    function drawMatrix(matrix, offset) {
+      matrix.forEach((row, y) => {
+           row.forEach((value, x) => {
+                if (value !== 0) {
+                     context.fillStyle = colors[value];
+                    context.fillRect(x +
+                        offset.x,
+                        y + offset.y,
+                        1, 1);
+                }
+            });
+        });
+    };
+
+    const arena = createMatrix(12, 20);
+    const player = {
+        pos: {
+            x: 0,
+            y: 0
+        },
+        matrix: null,
+        score: 0,
+    };
