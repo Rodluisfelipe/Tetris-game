@@ -154,8 +154,7 @@ const context = canvas.getContext('2d');
 
     function merge(arena, player) {
         player.matrix.forEach((row, y) => {
-            // On récupère les positions
-            row.forEach((value, x) => {
+           row.forEach((value, x) => {
                 if (value !== 0) {
                     arena[y + player.pos.y][x + player.pos.x] = value;
                 }
@@ -203,3 +202,30 @@ const context = canvas.getContext('2d');
             player.pos.x -= dir;
         }
     };
+    function playerReset() {
+        const pieces = 'TJLOSZI';
+        player.matrix = createPiece(pieces[pieces.length * Math.random() | 0]);
+        player.pos.y = 0;
+        player.pos.x = (arena[0].length / 2 | 0) -
+            (player.matrix[0].length / 2 | 0);
+
+       if (collide(arena, player)) {
+            arena.forEach(row => row.fill(0));
+            player.score = 0;
+            updateScore();
+            dropInterval = 500;
+            document.getElementById('levels').innerText = "Level 1";
+        }
+    }
+
+    function playerDrop() {
+        player.pos.y++;
+        if (collide(arena, player)) {
+            player.pos.y--;
+            merge(arena, player);
+            playerReset();
+            arenaSweep();
+            updateScore();
+        }
+        dropCounter = 0;
+    }
