@@ -223,3 +223,76 @@ canvas {
 .dropdown:hover .dropdown-content {
     display: block;
 }
+#score {
+    border: 0px solid black;
+    font-size: 24px;
+    margin-top: -10px;
+    margin-bottom: 5px;
+}
+
+#levels {
+    border: 0px solid black;
+    position: fixed;
+    top: 60px;
+    right: 10px;
+    font-size: 15px;
+}
+@media all and (max-width: 800px) {
+    .dropdown {
+        display: none;
+    }
+
+    #music_game {
+        left: 10px;
+    }
+
+    #start_game {
+        margin-top: 70px;
+    }
+
+    #restart_game {
+        opacity: 0;
+    }
+
+    #pause_game {
+        right: 10px;
+    }
+
+    #continue_game {
+        right: 15px;
+    }
+}
+
+@media all and (min-width: 801px) {
+    .controls_1 {
+        display: none;
+    }
+
+    .controls_2 {
+        display: none;
+    }
+}
+
+@media all and (max-width: 500px) {
+    canvas {
+        height: 60vh;
+    }
+}
+
+@media all and (max-width: 350px) {
+    #rotate_piece {
+        font-size: 40px;
+    }
+
+    #arrow-down {
+        display: none;
+    }
+
+    #arrow-right {
+        font-size: 50px;
+    }
+
+    #arrow-left {
+        font-size: 50px;
+    }
+}
