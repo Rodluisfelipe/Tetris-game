@@ -28,7 +28,7 @@ canvas {
     height: 62px;
     width: 100%;
     position: fixed;
-    background: white;
+    background: rgb(255, 255, 255);
     top: 0;
     left: 0;
     opacity: 0.65;
